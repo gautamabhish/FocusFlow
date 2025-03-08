@@ -1,0 +1,16 @@
+[package]
+name = "mov32"
+version = "1.0.0"
+authors = []
+
+[addresses]
+pomodoro_tracker_addr='0e1cb91bbbddaeb60a4091bf54643855fcd363d5d80425536c932c71df7a197b'
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+rev = "mainnet"
+subdir = "aptos-framework"
+
+[dev-dependencies]
