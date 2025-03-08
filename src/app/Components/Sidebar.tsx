@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { FaHome, FaTools, FaTrophy, FaUsers } from "react-icons/fa";
 import { GiCrafting } from "react-icons/gi";
-
+import { useAuth } from '../lib/auth-context';
 export default function Sidebar() {
+  const { user } = useAuth();
+
+  if (!user) return null;
   return (
     <div className="fixed top-0 left-0 h-screen flex items-center rounded-2xl">
       {/* Sidebar container: compact (w-16) by default, expands on hover; default opacity 80% */}

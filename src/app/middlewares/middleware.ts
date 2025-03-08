@@ -1,21 +1,16 @@
-//@ts-nocheck
 import { NextResponse } from "next/server";
-import { getAuth } from "firebase-admin/auth";
-import { cookies } from "next/headers";
+import type { NextRequest } from "next/server";
 
-// Define protected routes
-const protectedRoutes = ["/dashboard", "/profile", "/settings"];
+export function middleware(req: NextRequest) {
+  const token = req.cookies.get("firebaseAuthToken")?.value;
 
-export async function middleware(req) {
-  const path = req.nextUrl.pathname;
-
-  if (protectedRoutes.includes(path)) {
-    const authToken = cookies().get("authToken"); // Read Firebase Auth token
-
-    if (!authToken) {
-      return NextResponse.redirect(new URL("/", req.url)); // Redirect to login
-    }
+  if (!token && req.nextUrl.pathname !== "/auth/login") {
+    return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
-  return NextResponse.next(); // Continue if authenticated
+  return NextResponse.next();
 }
+
+export const config = {
+  matcher: ["/dashboard/:path*"], // Protect dashboard
+};
