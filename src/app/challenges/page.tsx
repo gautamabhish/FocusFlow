@@ -71,33 +71,36 @@ export default function ChallengePage() {
         </div>
       </div>
 
-      {/* Challenge History */}
-      <h2 className="text-3xl font-bold mb-4 text-center">Your Challenge History</h2>
-      <div className="flex justify-center">
-        <div className="space-y-4 p-4 max-h-fit w-full min-w-[200px] ">
-          {challengeHistory.map((challenge) => (
-            <Link key={challenge.id} href={`/challenge/${challenge.id}`}>
-              <div className="bg-gray-800 p-4 mt-2 mb-3 rounded-lg shadow flex flex-col md:flex-row justify-between items-center cursor-pointer transform hover:scale-105 transition-transform duration-300 lg:h-64 lg:w-64 mx-auto ">
-                <div className="text-center md:text-left">
-                  <h3 className="text-xl font-semibold">{challenge.name}</h3>
-                  <p className="mt-2">
-                    Time Saved: <span className="font-bold">{challenge.timeSaved}</span>
-                  </p>
-                </div>
-                <div className="mt-4 md:mt-0 text-center">
-                  <span className="block text-sm text-gray-400">Retention Increase</span>
-                  <span
-                    className={`text-lg font-bold ${parseInt(challenge.retentionIncrease) > 0 ? "text-green-500" : "text-red-500"}`}
-                  >
-                    {challenge.retentionIncrease}
-                  </span>
-                  <span className="block text-sm text-gray-400 mt-1">Points: {challenge.points}</span>
-                </div>
-              </div>
-            </Link>
-          ))}
+     {/* Challenge History */}
+<h2 className="text-3xl font-bold mb-4 text-center">Your Challenge History</h2>
+<div className="flex justify-center px-2">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl p-4">
+    {challengeHistory.map((challenge) => (
+      <div key={challenge.id} className="flex justify-center">
+        <div className="bg-gray-800 p-4 rounded-lg shadow flex flex-col justify-between items-center cursor-pointer 
+                        transform hover:scale-105 transition-transform duration-300 
+                        w-full max-w-[400px] h-[350px]">
+          <div className="text-center">
+            <h3 className="text-xl font-semibold">{challenge.name}</h3>
+            <p className="mt-2">
+              Time Saved: <span className="font-bold">{challenge.timeSaved}</span>
+            </p>
+          </div>
+          <div className="mt-4 text-center">
+            <span className="block text-sm text-gray-400">Retention Increase</span>
+            <span
+              className={`text-lg font-bold ${parseInt(challenge.retentionIncrease) > 0 ? "text-green-500" : "text-red-500"}`}
+            >
+              {challenge.retentionIncrease}
+            </span>
+            <span className="block text-sm text-gray-400 mt-1">Points: {challenge.points}</span>
+          </div>
         </div>
       </div>
+    ))}
+  </div>
+</div>
+
     </div>
   );
 }
